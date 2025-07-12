@@ -1,0 +1,158 @@
+/* Basic Reset & Body Styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Header */
+header {
+    background-color: #ff99cc; /* Poppy pink */
+    color: white;
+    padding: 40px 20px;
+    text-align: center;
+    border-bottom: 5px solid #ff66b2;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 3em;
+}
+
+header p {
+    font-size: 1.2em;
+}
+
+/* Sections */
+section {
+    background-color: white;
+    margin: 20px;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+section h2 {
+    color: #ff66b2; /* Darker pink for headings */
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 2em;
+}
+
+/* Image Gallery Styling */
+.image-grid {
+    display: grid;
+    /* Increased minmax from 300px to 350px/380px to make items larger.
+       Adjust 350px-380px as per your preference; 380px will be quite large on typical screens. */
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); 
+    gap: 30px; /* Increased gap for more breathing room around larger images */
+    margin-top: 30px;
+    align-items: start;
+}
+
+.image-item {
+    position: relative;
+    width: 100%;
+    /* Keep padding-bottom at 75% for a 4:3 aspect ratio, or adjust if your photos have a different common ratio.
+       For square images, use 100%. For wider, less tall images, use something like 65% or 60%. */
+    padding-bottom: 75%; /* Maintains a 4:3 aspect ratio (height is 75% of width) */
+    background-color: #eee;
+    border-radius: 12px; /* Slightly larger border-radius for larger images */
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.18); /* Slightly more prominent shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.image-item img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Remains 'contain' to prevent cropping. Use 'cover' if you prefer cropping over empty space. */
+    object-position: center;
+    border-radius: 12px; /* Match parent border-radius */
+}
+
+.image-item:hover {
+    transform: translateY(-7px) scale(1.03); /* More pronounced lift and scale on hover */
+    box-shadow: 0 10px 25px rgba(0,0,0,0.25); /* Stronger shadow on hover */
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+    .image-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Adjust min-width for tablets */
+        gap: 20px; /* Reduce gap slightly for smaller screens */
+    }
+    .image-item {
+        padding-bottom: 70%; /* Slightly adjust aspect ratio for medium screens if needed */
+    }
+}
+
+@media (max-width: 480px) {
+    .image-grid {
+        grid-template-columns: 1fr; /* Still stack images on very small screens */
+        gap: 15px; /* Further reduce gap */
+    }
+    .image-item {
+        padding-bottom: 75%; /* Back to 4:3 for single column on mobile, or adjust as needed */
+        border-radius: 8px; /* Slightly smaller radius for small screens */
+    }
+}
+
+/* Video Container */
+.video-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; /* Allows multiple videos to wrap */
+    gap: 20px;
+}
+
+.video-container video {
+    width: 100%;
+    max-width: 600px; /* Max width for videos */
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Adopt Button */
+.adopt-button {
+    display: block; /* Makes it take full width of its container */
+    width: fit-content; /* Adjusts width to content */
+    margin: 30px auto; /* Centers the button */
+    padding: 15px 30px;
+    background-color: #4CAF50; /* Green for action */
+    color: white;
+    text-decoration: none;
+    font-size: 1.5em;
+    font-weight: bold;
+    border-radius: 50px; /* Pill shape */
+    transition: background-color 0.3s ease;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.adopt-button:hover {
+    background-color: #45a049; /* Darker green on hover */
+    transform: translateY(-2px); /* Slight lift effect */
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+    background-color: #333;
+    color: white;
+    font-size: 0.9em;
+}
