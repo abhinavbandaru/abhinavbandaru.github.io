@@ -42,34 +42,44 @@ header p {
     background-color: #f7a9a8; /* A warm pink, matching header gradient start */
     padding: 15px 0;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    text-align: center; /* Center the links */
-    margin-bottom: 40px; /* Space below navigation to next section */
+    text-align: center;
+    margin-bottom: 40px;
 }
 
 .main-nav ul {
-    list-style: none; /* Remove bullet points */
+    list-style: none;
     padding: 0;
     margin: 0;
-    display: flex; /* Use flexbox for horizontal layout */
-    justify-content: center; /* Center items horizontally */
-    flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
     gap: 25px; /* Space between nav items */
 }
 
+.main-nav li {
+    /* No specific styling needed here */
+}
 
 .main-nav a {
-    text-decoration: none; /* Remove underline */
-    color: white; /* White text for links */
-    font-size: 1.35em;
-    padding: 10px 20px;
-    border-radius: 5px;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    text-decoration: none;
+    color: white; /* Text color remains white for contrast */
+    font-size: 1.4em; /* Slightly larger font for prominence */
+    padding: 12px 28px; /* Increased padding for a meatier button feel */
+    border-radius: 10px; /* More rounded corners for a soft, friendly button */
+
+    /* --- NEW/UPDATED STYLES FOR POP-OUT EFFECT --- */
+    background-color: #E57373; /* A strong, clear pink background (from original palette) */
+    box-shadow: 0 5px 12px rgba(0,0,0,0.25); /* Subtle shadow to lift the button */
+    transition: all 0.3s ease; /* Smooth transition for all hover effects */
+    -webkit-text-stroke: 0.5px black; /* Keep subtle text outline */
     text-shadow: none; /* Ensure no text shadow */
 }
 
 .main-nav a:hover {
-    background-color: rgba(255,255,255,0.2); /* Subtle white overlay on hover */
-    color: white;
+    background-color: #F06292; /* A slightly different, vibrant pink on hover (Poppy's name color) */
+    transform: translateY(-3px); /* Lift effect on hover */
+    box-shadow: 0 8px 18px rgba(0,0,0,0.35); /* Stronger shadow on hover */
+    color: white; /* Ensure text color remains white on hover */
 }
 
 /* Sections */
