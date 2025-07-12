@@ -32,9 +32,44 @@ header h1 {
 }
 
 header p {
-    margin-top: 0px;
+    margin: 0px;
     font-size: 1.2em;
     color: #8A4F6B;
+}
+
+/* Main Navigation Styles */
+.main-nav {
+    background-color: #f7a9a8; /* A warm pink, matching header gradient start */
+    padding: 15px 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    text-align: center; /* Center the links */
+    margin-bottom: 40px; /* Space below navigation to next section */
+}
+
+.main-nav ul {
+    list-style: none; /* Remove bullet points */
+    padding: 0;
+    margin: 0;
+    display: flex; /* Use flexbox for horizontal layout */
+    justify-content: center; /* Center items horizontally */
+    flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+    gap: 25px; /* Space between nav items */
+}
+
+
+.main-nav a {
+    text-decoration: none; /* Remove underline */
+    color: white; /* White text for links */
+    font-size: 1.35em;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    text-shadow: none; /* Ensure no text shadow */
+}
+
+.main-nav a:hover {
+    background-color: rgba(255,255,255,0.2); /* Subtle white overlay on hover */
+    color: white;
 }
 
 /* Sections */
@@ -165,6 +200,22 @@ section h2 {
         padding-bottom: 130%; /* Increased for portrait mode (height will be 130% of width) */
         /* Original was often 70% or 75% for landscape */
     }
+    .main-nav ul {
+        gap: 15px;
+    }
+    .main-nav a {
+        font-size: 1.1em;
+        padding: 6px 12px; /* Slightly less padding */
+    }
+
+    /* Grid adjustments for Gallery Page */
+    .grid-container {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Smaller min-width for tablets */
+        gap: 15px;
+    }
+    .grid-item {
+        padding-bottom: 70%; /* Adjust aspect ratio for tablets if needed (e.g., 90% for squarer) */
+    }
 }
 
 @media (max-width: 480px) {
@@ -189,6 +240,33 @@ section h2 {
         padding-bottom: 130%; /* Keep consistent with larger mobile breakpoint */
         width: 100%;
         box-sizing: border-box;
+    }
+    .main-nav ul {
+        flex-direction: column; /* Stack nav items vertically on small phones */
+        gap: 10px;
+    }
+    .main-nav a {
+        padding: 10px 20px;
+        font-size: 1.2em;
+        width: 80%; /* Make links take more width when stacked */
+        margin: 0 auto; /* Center links */
+    }
+
+    /* Grid adjustments for Gallery Page */
+    #photo-video-grid {
+        padding: 40px 15px;
+        margin: 20px auto;
+    }
+    #photo-video-grid h2 {
+        font-size: 2em;
+    }
+    .grid-container {
+        grid-template-columns: 1fr; /* Single column on very small screens */
+        gap: 15px;
+    }
+    .grid-item {
+        padding-bottom: 80%; /* Adjust aspect ratio for single column mobile (e.g., 80% for slightly taller-than-square) */
+        /* IMPORTANT: If most of your photos are portrait, consider setting this to 120-150% like we did for the main gallery */
     }
 }
 
@@ -261,4 +339,72 @@ footer {
     font-weight: bold;
     font-size: 1.5em; /* Make the tick mark visibly larger */
     vertical-align: middle; /* Align tick mark with text */
+}
+
+/* Photo/Video Grid for Gallery Page */
+#photo-video-grid {
+    padding: 60px 20px;
+    margin: 30px auto;
+    background-color: #ffebe6; /* Light background for the section */
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    max-width: 1000px; /* Max width for the container */
+}
+
+#photo-video-grid h2 {
+    color: #e57373; /* Match other section headings */
+    text-align: center;
+    font-size: 2.8em;
+    margin-bottom: 50px;
+    position: relative;
+}
+
+#photo-video-grid h2::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -15px;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background-color: #ffccbc;
+    border-radius: 2px;
+}
+
+.grid-container {
+    display: grid;
+    /* Responsive grid: 2 columns on medium, 3 on large, 1 on small */
+    /* This will allow items to be at least 280px wide before wrapping */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px; /* Space between grid items */
+}
+
+.grid-item {
+    position: relative;
+    width: 100%;
+    /* === IMPORTANT CHANGE HERE: Increased for portrait images === */
+    /* If your portrait images are roughly 3:4 aspect ratio, use 130-135% */
+    /* If they are taller (e.g., 9:16 phone photos), consider 160-177% */
+    padding-bottom: 135%; /* For portrait aspect ratio (height is 135% of width) */
+    background-color: #eee;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.grid-item:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+.grid-item img,
+.grid-item video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Fill the container, cropping if aspect ratio differs */
+    object-position: center;
 }
