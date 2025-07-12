@@ -253,13 +253,20 @@ section h2 {
     }
     .main-nav ul {
         flex-direction: column; /* Stack nav items vertically on small phones */
-        gap: 10px;
+        gap: 10px; /* Keep gap, but margin-bottom will be dominant for vertical spacing */
+    }
+    .main-nav li { /* --- NEW STYLE HERE --- */
+        margin-bottom: 10px; /* Add explicit space below each stacked button */
+    }
+    .main-nav li:last-child { /* --- NEW STYLE HERE: Remove margin from the very last button --- */
+        margin-bottom: 0;
     }
     .main-nav a {
         padding: 10px 20px;
         font-size: 1.2em;
-        width: 80%; /* Make links take more width when stacked */
-        margin: 0 auto; /* Center links */
+        width: 80%;
+        margin: 0 auto;
+    }
     }
 
     /* Grid adjustments for Gallery Page */
