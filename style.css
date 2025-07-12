@@ -14,13 +14,16 @@ body {
     padding: 20px;
 }
 
+
+
 /* Header */
 header {
     background-color: #ff99cc; /* Poppy pink */
     color: white;
-    padding: 40px 20px;
+    padding: 40px 0px;
     text-align: center;
     border-bottom: 5px solid #ff66b2;
+    margin-bottom: 0px;
 }
 
 header h1 {
@@ -29,7 +32,9 @@ header h1 {
 }
 
 header p {
+    margin-top: 0px;
     font-size: 1.2em;
+    color: #8A4F6B;
 }
 
 /* Sections */
@@ -232,4 +237,28 @@ footer {
     background-color: #333;
     color: white;
     font-size: 0.9em;
+}
+
+/* Styling for Health Checkmarks */
+.health-checks {
+    list-style: none; /* Remove default bullet points */
+    padding: 0;
+    margin-top: 25px; /* Space above the list */
+    margin-bottom: 25px; /* Space below the list */
+    text-align: center; /* Center the list items */
+}
+
+.health-checks li {
+    font-size: 1.25em; /* Make text slightly larger than paragraph */
+    margin-bottom: 12px; /* Space between list items */
+    color: #000; /* Standard text color */
+    font-weight: 500; /* Slightly bolder text */
+}
+
+.health-checks li span.tick {
+    color: #4CAF50; /* A nice green color for the tick mark */
+    margin-right: 10px; /* Space between tick and text */
+    font-weight: bold;
+    font-size: 1.5em; /* Make the tick mark visibly larger */
+    vertical-align: middle; /* Align tick mark with text */
 }
