@@ -48,65 +48,139 @@ section h2 {
     font-size: 2em;
 }
 
-/* Image Gallery Styling */
-.image-grid {
-    display: grid;
-    /* Increased minmax from 300px to 350px/380px to make items larger.
-       Adjust 350px-380px as per your preference; 380px will be quite large on typical screens. */
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); 
-    gap: 30px; /* Increased gap for more breathing room around larger images */
-    margin-top: 30px;
-    align-items: start;
+/* Image Gallery Styling (Zig-zag Layout) */
+#gallery {
+    padding: 60px 20px; /* Slightly more padding for the section */
+    margin: 30px auto;
+    background-color: #ffebe6; /* A very light, warm background for the gallery section */
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    max-width: 1000px; /* Matches container width */
 }
 
-.image-item {
-    position: relative;
-    width: 100%;
-    /* Keep padding-bottom at 75% for a 4:3 aspect ratio, or adjust if your photos have a different common ratio.
-       For square images, use 100%. For wider, less tall images, use something like 65% or 60%. */
-    padding-bottom: 75%; /* Maintains a 4:3 aspect ratio (height is 75% of width) */
-    background-color: #eee;
-    border-radius: 12px; /* Slightly larger border-radius for larger images */
-    overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.18); /* Slightly more prominent shadow */
+#gallery h2 {
+    margin-bottom: 50px; /* More space below heading */
+}
+
+.gallery-item-row {
+    display: flex;
+    flex-wrap: wrap; /* Allows items to wrap on smaller screens */
+    align-items: center; /* Vertically aligns items in the middle */
+    gap: 40px; /* Space between image and text */
+    margin-bottom: 60px; /* Space between each row */
+    padding: 20px; /* Internal padding for each row */
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08); /* Subtle shadow for each row */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.image-item img {
+.gallery-item-row:last-of-type {
+    margin-bottom: 0; /* No margin after the last row */
+}
+
+.gallery-item-row:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.gallery-image {
+    flex: 1; /* Allows image container to grow */
+    min-width: 300px; /* Minimum width for the image container before wrapping */
+    position: relative;
+    padding-bottom: 70%; /* Maintains a 4:3 aspect ratio (adjust as needed for your images) */
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+.gallery-image img {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: contain; /* Remains 'contain' to prevent cropping. Use 'cover' if you prefer cropping over empty space. */
+    object-fit: cover; /* Changed to 'cover' for a filled look, but can be 'contain' if preferred */
     object-position: center;
-    border-radius: 12px; /* Match parent border-radius */
 }
 
-.image-item:hover {
-    transform: translateY(-7px) scale(1.03); /* More pronounced lift and scale on hover */
-    box-shadow: 0 10px 25px rgba(0,0,0,0.25); /* Stronger shadow on hover */
+.gallery-image video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures video fills the container, cropping if aspect ratios differ */
+    object-position: center;
 }
 
-/* Responsive adjustments for smaller screens */
-@media (max-width: 768px) {
-    .image-grid {
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Adjust min-width for tablets */
-        gap: 20px; /* Reduce gap slightly for smaller screens */
+.gallery-text {
+    flex: 1; /* Allows text container to grow */
+    min-width: 300px; /* Minimum width for the text container before wrapping */
+    padding: 10px 0; /* Some padding for text */
+}
+
+.gallery-text h3 {
+    color: #e57373; /* Match heading color */
+    font-size: 1.8em;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.gallery-text p {
+    font-size: 1.1em;
+    line-height: 1.7;
+    color: #555;
+    text-align: justify;
+}
+
+/* Zig-zag effect: Reverse order for odd rows (or rows with 'reverse' class) */
+.gallery-item-row.reverse {
+    flex-direction: row-reverse; /* Puts image on the right, text on the left */
+}
+
+/* Responsive Adjustments for Zig-zag Layout */
+@media (max-width: 900px) {
+    .gallery-item-row {
+        gap: 30px; /* Slightly less gap on smaller screens */
     }
-    .image-item {
-        padding-bottom: 70%; /* Slightly adjust aspect ratio for medium screens if needed */
+    .gallery-image,
+    .gallery-text {
+        min-width: unset; /* Allow flexible width */
+        flex: 1 1 100%; /* Make them stack vertically on smaller screens */
+    }
+    .gallery-item-row {
+        flex-direction: column; /* Stack image and text vertically */
+    }
+    .gallery-item-row.reverse {
+        flex-direction: column; /* Ensure they still stack, not reverse-stack */
+    }
+    .gallery-text h3 {
+        text-align: center; /* Center text heading when stacked */
+        margin-top: 20px;
+    }
+    .gallery-text p {
+        text-align: center; /* Center text paragraph when stacked */
     }
 }
 
 @media (max-width: 480px) {
-    .image-grid {
-        grid-template-columns: 1fr; /* Still stack images on very small screens */
-        gap: 15px; /* Further reduce gap */
+    #gallery {
+        padding: 40px 15px;
+        margin: 20px auto;
     }
-    .image-item {
-        padding-bottom: 75%; /* Back to 4:3 for single column on mobile, or adjust as needed */
-        border-radius: 8px; /* Slightly smaller radius for small screens */
+    .gallery-item-row {
+        margin-bottom: 40px;
+        padding: 15px;
+    }
+    .gallery-text h3 {
+        font-size: 1.5em;
+    }
+    .gallery-text p {
+        font-size: 1em;
+    }
+    .gallery-image {
+        padding-bottom: 75%; /* More consistent aspect ratio on small mobile screens */
     }
 }
 
